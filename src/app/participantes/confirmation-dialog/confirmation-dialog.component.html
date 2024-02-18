@@ -1,0 +1,8 @@
+<mat-dialog-content>
+  Tem certeza que deseja remover o Participante com <b>Id: {{data._id}}</b>?
+</mat-dialog-content>
+<mat-divider></mat-divider>
+<mat-dialog-actions align="end">
+  <button mat-button [disabled]="isProcessing" (click)='confirm()'>Sim</button>
+  <button mat-button (click)='closeDialog()' cdkFocusInitial>Não</button>
+</mat-dialog-actions>

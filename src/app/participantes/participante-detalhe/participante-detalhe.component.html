@@ -1,0 +1,80 @@
+<form [formGroup]="participanteForm" (ngSubmit) = "onSubmit()" >
+
+  <mat-dialog-content>
+    <div class="container">
+      <div class="row">
+        <mat-form-field class="col-2">
+          <mat-label>Id</mat-label>
+          <input matInput formControlName='id' readonly='true'>
+        </mat-form-field>
+        <mat-form-field class="col-10">
+          <mat-label>Nome Completo</mat-label>
+          <input matInput #input placeholder="Ex. Luis Garcia" formControlName='nome' required >
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-6">
+          <mat-label>Telefone Principal</mat-label>
+          <input matInput placeholder="+55 15 99999-8888" required
+          mask="+00 (00) 00000-0000||+00 (00) 0000-0000||(00) 00000-0000||(00) 0000-0000" inputmode="numeric" formControlName='telefonePrimario'>
+        </mat-form-field>
+        <mat-form-field class="col-6">
+          <mat-label>Telefone Secundário</mat-label>
+          <input matInput placeholder="+55 15 4444-3333"
+          mask="+00 (00) 00000-0000||+00 (00) 0000-0000||(00) 00000-0000||(00) 0000-0000" inputmode="numeric" formControlName='telefoneSecundario'>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-6">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="exemplo@email.com" required mask="A*@A*.SSS"
+          [validation]="true" [dropSpecialCharacters]="false" formControlName='email'>
+        </mat-form-field>
+        <mat-form-field class="col-6">
+          <mat-label>CPF</mat-label>
+          <input matInput #input placeholder="Ex. 123.456.789-00" required inputmode="numeric"
+          mask="000.000.000-00" formControlName='cpf'>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-6">
+          <mat-label>Data Nascimento</mat-label>
+          <input matInput [matDatepicker]="dp3" placeholder="Ex. 01/01/2021"
+          formControlName='dataNascimento' readonly="true">
+          <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
+          <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="col-6">
+          <mat-label>Sexo</mat-label>
+          <mat-select formControlName='sexo'>
+            <mat-option value="MASCULINO">Masculino</mat-option>
+            <mat-option value="FEMININO">Feminino</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class='row'>
+        <mat-form-field class="col-6">
+          <mat-label>Estado Civil</mat-label>
+          <mat-select formControlName='estadoCivil'>
+            <mat-option value="SOLTEIRO">Solteiro</mat-option>
+            <mat-option value="CASADO">Casado</mat-option>
+            <mat-option value="DIVORCIADO">Divorciado</mat-option>
+            <mat-option value="VIUVO">Viúvo</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-checkbox class="col-6" formControlName='status' >Ativo</mat-checkbox>
+      </div>
+
+    </div>
+
+  </mat-dialog-content>
+  <mat-divider></mat-divider>
+  <mat-dialog-actions align="end">
+    <button mat-stroked-button color="primary"[disabled]="isProcessing" type="submit">Salvar</button>
+    <button mat-button (click)='closeDialog()' cdkFocusInitial type='button'>Cancelar</button>
+  </mat-dialog-actions>
+</form>
